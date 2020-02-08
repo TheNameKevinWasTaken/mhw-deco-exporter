@@ -1,0 +1,401 @@
+Antiblast Jewel 1:3
+Antidote Jewel 1:3
+Antipara Jewel 1:3
+Artillery Jewel 1:5
+Attack Jewel 1:7
+Blast Jewel 1:4
+Blastcoat Jewel 3:1
+Blaze Jewel 1:6
+Bolt Jewel 1:6
+Bomber Jewel 1:5
+Botany Jewel 1:4
+Brace Jewel 3:3
+Challenger Jewel 2:7
+Charger Jewel 2:3
+Crisis Jewel 1:1
+Critical Jewel 2:3
+Def Lock Jewel 1:3
+Defense Jewel 1:7
+Destroyer Jewel 2:3
+Dragon Jewel 1:6
+Dragon Res Jewel 1:3
+Dragonseal Jewel 3:1
+Drain Jewel 1:5
+Draw Jewel 2:3
+Earplug Jewel 3:5
+Elementless Jewel 2:1
+Enduring Jewel 1:3
+Enhancer Jewel 2:3
+Evasion Jewel 2:5
+Expert Jewel 1:7
+Fire Res Jewel 1:3
+Flawless Jewel 2:3
+Flight Jewel 2:1
+Footing Jewel 2:3
+Forceshot Jewel 3:2
+Fortitude Jewel 1:1
+Friendship Jewel 1:5
+Frost Jewel 1:6
+Fungiform Jewel 1:3
+Furor Jewel 2:5
+Geology Jewel 1:3
+Gobbler Jewel 1:3
+Grinder Jewel 1:3
+Handicraft Jewel 3:5
+Heavy Artillery Jewel 1:2
+Hungerless Jewel 1:3
+Ice Res Jewel 1:3
+Intimidator Jewel 1:3
+Ironwall Jewel 1:5
+Jumping Jewel 2:3
+KO Jewel 2:5
+Magazine Jewel 2:1
+Maintenance Jewel 1:5
+Medicine Jewel 1:3
+Meowster Jewel 1:5
+Miasma Jewel 1:3
+Mighty Jewel 2:5
+Mighty Bow Jewel 2:1
+Mind's Eye Jewel 2:1
+Mirewalker Jewel 1:3
+Paracoat Jewel 3:1
+Paralyzer Jewel 1:4
+Pep Jewel 1:3
+Physique Jewel 2:5
+Pierce Jewel 3:2
+Poisoncoat Jewel 3:1
+Potential Jewel 2:5
+Protection Jewel 1:5
+Recovery Jewel 1:3
+Refresh Jewel 2:3
+Release Jewel 3:3
+Resistor Jewel 1:3
+Satiated Jewel 1:3
+Scent Jewel 1:1
+Sharp Jewel 2:1
+Sheath Jewel 1:3
+Shield Jewel 2:1
+Sleep Jewel 1:4
+Sleepcoat Jewel 3:1
+Slider Jewel 2:1
+Sonorous Jewel 1:2
+Specimen Jewel 1:3
+Spread Jewel 3:2
+Sprinter Jewel 2:3
+Steadfast Jewel 1:3
+Stonethrower Jewel 1:5
+Stream Jewel 1:6
+Survival Jewel 1:3
+Suture Jewel 1:3
+Tenderizer Jewel 2:3
+Throttle Jewel 2:7
+Thunder Res Jewel 1:3
+Tip Toe Jewel 1:3
+Trueshot Jewel 1:2
+Venom Jewel 1:4
+Vitality Jewel 1:3
+Water Res Jewel 1:3
+Wind Resist Jewel 2:5
+Cooling Jewel 2:1
+Phoenix Jewel 3:3
+Guardian Jewel 2:3
+Warming Jewel 2:1
+Fire Res Jewel+ 4:5
+Water Res Jewel+ 4:5
+Ice Res Jewel+ 4:5
+Thunder Res Jewel+ 4:5
+Dragon Res Jewel+ 4:5
+Blaze Jewel+ 4:8
+Stream Jewel+ 4:8
+Frost Jewel+ 4:8
+Bolt Jewel+ 4:8
+Dragon Jewel+ 4:8
+Venom Jewel+ 4:6
+Paralyzer Jewel+ 4:6
+Sleep Jewel+ 4:6
+Blast Jewel+ 4:6
+Hard Fire Res Jewel 4:5
+Hard Water Res Jewel 4:5
+Hard Ice Res Jewel 4:5
+Hard Thunder Res Jewel 4:5
+Hard Dragon Res Jewel 4:5
+Antidote Jewel+ 4:5
+Antipara Jewel+ 4:5
+Pep Jewel+ 4:5
+Steadfast Jewel+ 4:5
+Antiblast Jewel+ 4:5
+Suture Jewel+ 4:5
+Def Lock Jewel+ 4:5
+Miasma Jewel+ 4:5
+Hungerless Jewel+ 4:5
+Recovery Jewel+ 4:5
+Tip Toe Jewel+ 4:5
+Intimidator Jewel+ 4:5
+Meowster Jewel+ 4:7
+Hard Tip Toe Jewel 4:5
+Hard Intimidator Jewel 4:5
+Hard Meowster Jewel 4:7
+Trueshot Jewel+ 4:4
+Heavy Artillery Jewel+ 4:4
+Botany Jewel+ 4:6
+Geology Jewel+ 4:5
+Survival Jewel+ 4:5
+Mirewalker Jewel+ 4:5
+Specimen Jewel+ 4:5
+Sonorous Jewel+ 4:4
+Hard Botany Jewel+ 4:6
+Hard Geology Jewel 4:5
+Hard Survival Jewel 4:5
+Hard Specimen Jewel 4:5
+Enduring Jewel+ 4:5
+Defense Jewel+ 4:9
+Hard Enduring Jewel 4:5
+Hard Defense Jewel 4:9
+Artillery Jewel+ 4:5
+Earplug Jewel+ 4:7
+Wind Resist Jewel+ 4:7
+Attack Jewel+ 4:9
+Expert Jewel+ 4:9
+Handicraft Jewel+ 4:7
+Throttle Jewel+ 4:7
+Challenger Jewel+ 4:7
+Potential Jewel+ 4:7
+Furor Jewel+ 4:7
+Physique Jewel+ 4:7
+Evasion Jewel+ 4:7
+Ironwall Jewel+ 4:7
+Friendship Jewel+ 4:7
+Drain/Physique Jewel 4:7
+Fortitude/Physique Jewel 4:7
+Crisis/Physique Jewel 4:7
+Ironwall/Physique Jewel 4:7
+Friendship/Physique Jewel 4:7
+Satiated/Physique Jewel 4:7
+Stonethrower/Physique Jewel 4:7
+Resistor/Physique Jewel 4:5
+Flight/Physique Jewel 4:7
+Sprinter/Physique Jewel 4:7
+Refresh/Physique Jewel 4:7
+Jumping/Physique Jewel 4:7
+Sheath/Physique Jewel 4:7
+Gobbler/Physique Jewel 4:7
+Grinder/Physique Jewel 4:7
+Bomber/Physique Jewel 4:5
+Fungiform/Physique Jewel 4:7
+Slider/Physique Jewel 4:7
+Guardian/Physique Jewel 4:7
+Drain/Evasion Jewel 4:7
+Fortitude/Evasion Jewel 4:7
+Crisis/Evasion Jewel 4:7
+Ironwall/Evasion Jewel 4:7
+Friendship/Evasion Jewel 4:7
+Satiated/Evasion Jewel 4:7
+Stonethrower/Evasion Jewel 4:7
+Resistor/Evasion Jewel 4:5
+Flight/Evasion Jewel 4:7
+Sprinter/Evasion Jewel 4:7
+Refresh/Evasion Jewel 4:7
+Jumping/Evasion Jewel 4:5
+Sheath/Evasion Jewel 4:7
+Gobbler/Evasion Jewel 4:7
+Grinder/Evasion Jewel 4:7
+Bomber/Evasion Jewel 4:5
+Fungiform/Evasion Jewel 4:7
+Slider/Evasion Jewel 4:7
+Guardian/Evasion Jewel 4:7
+Drain/Attack Jewel 4:9
+Fortitude/Attack Jewel 4:9
+Crisis/Attack Jewel 4:9
+Ironwall/Attack Jewel 4:9
+Friendship/Attack Jewel 4:9
+Satiated/Attack Jewel 4:9
+Stonethrower/Attack Jewel 4:9
+Resistor/Attack Jewel 4:9
+Flight/Attack Jewel 4:9
+Sprinter/Attack Jewel 4:9
+Refresh/Attack Jewel 4:9
+Jumping/Attack Jewel 4:9
+Sheath/Attack Jewel 4:9
+Gobbler/Attack Jewel 4:9
+Grinder/Attack Jewel 4:9
+Bomber/Attack Jewel 4:9
+Fungiform/Attack Jewel 4:9
+Slider/Attack Jewel 4:9
+Guardian/Attack Jewel 4:9
+Drain/Expert Jewel 4:9
+Fortitude/Expert Jewel 4:9
+Crisis/Expert Jewel 4:9
+Ironwall/Expert Jewel 4:9
+Friendship/Expert Jewel 4:9
+Satiated/Expert Jewel 4:9
+Stonethrower/Expert Jewel 4:9
+Resistor/Expert Jewel 4:9
+Flight/Expert Jewel 4:9
+Sprinter/Expert Jewel 4:9
+Refresh/Expert Jewel 4:9
+Jumping/Expert Jewel 4:9
+Sheath/Expert Jewel 4:9
+Gobbler/Expert Jewel 4:9
+Grinder/Expert Jewel 4:9
+Bomber/Expert Jewel 4:9
+Fungiform/Expert Jewel 4:9
+Slider/Expert Jewel 4:9
+Guardian/Expert Jewel 4:9
+Drain/Release Jewel 4:5
+Fortitude/Release Jewel 4:3
+Crisis/Release Jewel 4:5
+Ironwall/Release Jewel 4:5
+Friendship/Release Jewel 4:5
+Satiated/Release Jewel 4:3
+Stonethrower/Release Jewel 4:5
+Resistor/Release Jewel 4:5
+Flight/Release Jewel 4:3
+Sprinter/Release Jewel 4:5
+Refresh/Release Jewel 4:5
+Jumping/Release Jewel 4:5
+Sheath/Release Jewel 4:5
+Gobbler/Release Jewel 4:5
+Grinder/Release Jewel 4:5
+Bomber/Release Jewel 4:5
+Fungiform/Release Jewel 4:5
+Slider/Release Jewel 4:3
+Guardian/Release Jewel 4:5
+Drain/Handicraft Jewel 4:7
+Fortitude/Handicraft Jewel 4:7
+Crisis/Handicraft Jewel 4:7
+Ironwall/Handicraft Jewel 4:7
+Friendship/Handicraft Jewel 4:7
+Satiated/Handicraft Jewel 4:7
+Stonethrower/Handicraft Jewel 4:7
+Resistor/Handicraft Jewel 4:5
+Flight/Handicraft Jewel 4:7
+Sprinter/Handicraft Jewel 4:7
+Refresh/Handicraft Jewel 4:7
+Jumping/Handicraft Jewel 4:5
+Sheath/Handicraft Jewel 4:7
+Gobbler/Handicraft Jewel 4:7
+Grinder/Handicraft Jewel 4:7
+Bomber/Handicraft Jewel 4:5
+Fungiform/Handicraft Jewel 4:7
+Slider/Handicraft Jewel 4:7
+Guardian/Handicraft Jewel 4:7
+Footing/Protection Jewel 4:5
+Charger/Protection Jewel 4:5
+Enhancer/Protection Jewel 4:5
+Destroyer/Protection Jewel 4:5
+KO/Protection Jewel 4:5
+Potential/Protection Jewel 4:5
+Wind Resist/Protection Jewel 4:5
+Draw/Protection Jewel 4:5
+Throttle/Protection Jewel 4:5
+Challenger/Protection Jewel 4:7
+Flawless/Protection Jewel 4:5
+Furor/Protection Jewel 4:5
+Mighty/Protection Jewel 4:5
+Brace/Protection Jewel 4:5
+Phoenix/Protection Jewel 4:5
+Earplug/Protection Jewel 4:5
+Critical/Protection Jewel 4:5
+Tenderizer/Protection Jewel 4:5
+Handicraft/Protection Jewel 4:5
+Release/Protection Jewel 4:5
+Footing/Medicine Jewel 4:5
+Charger/Medicine Jewel 4:5
+Enhancer/Medicine Jewel 4:5
+Destroyer/Medicine Jewel 4:5
+KO/Medicine Jewel 4:5
+Potential/Medicine Jewel 4:7
+Wind Resist/Medicine Jewel 4:5
+Draw/Medicine Jewel 4:5
+Throttle/Medicine Jewel 4:7
+Challenger/Medicine Jewel 4:7
+Flawless/Medicine Jewel 4:5
+Furor/Medicine Jewel 4:5
+Mighty/Medicine Jewel 4:5
+Brace/Medicine Jewel 4:5
+Phoenix/Medicine Jewel 4:5
+Earplug/Medicine Jewel 4:7
+Critical/Medicine Jewel 4:5
+Tenderizer/Medicine Jewel 4:5
+Handicraft/Medicine Jewel 4:7
+Release/Medicine Jewel 4:5
+Footing/Vitality Jewel 4:5
+Charger/Vitality Jewel 4:5
+Enhancer/Vitality Jewel 4:5
+Destroyer/Vitality Jewel 4:5
+KO/Vitality Jewel 4:5
+Potential/Vitality Jewel 4:7
+Wind Resist/Vitality Jewel 4:5
+Draw/Vitality Jewel 4:5
+Throttle/Vitality Jewel 4:5
+Challenger/Vitality Jewel 4:7
+Flawless/Vitality Jewel 4:5
+Furor/Vitality Jewel 4:5
+Mighty/Vitality Jewel 4:5
+Brace/Vitality Jewel 4:5
+Phoenix/Vitality Jewel 4:5
+Earplug/Vitality Jewel 4:7
+Critical/Vitality Jewel 4:5
+Tenderizer/Vitality Jewel 4:5
+Handicraft/Vitality Jewel 4:7
+Release/Vitality Jewel 4:5
+Footing/Maintenance Jewel 4:5
+Charger/Maintenance Jewel 4:5
+Enhancer/Maintenance Jewel 4:5
+Destroyer/Maintenance Jewel 4:5
+KO/Maintenance Jewel 4:5
+Potential/Maintenance Jewel 4:7
+Wind Resist/Maintenance Jewel 4:5
+Draw/Maintenance Jewel 4:5
+Throttle/Maintenance Jewel 4:7
+Challenger/Maintenance Jewel 4:7
+Flawless/Maintenance Jewel 4:5
+Furor/Maintenance Jewel 4:7
+Mighty/Maintenance Jewel 4:5
+Brace/Maintenance Jewel 4:5
+Phoenix/Maintenance Jewel 4:5
+Earplug/Maintenance Jewel 4:7
+Critical/Maintenance Jewel 4:5
+Tenderizer/Maintenance Jewel 4:5
+Handicraft/Maintenance Jewel 4:7
+Release/Maintenance Jewel 4:5
+Footing/Physique Jewel 4:7
+Charger/Physique Jewel 4:7
+Enhancer/Physique Jewel 4:7
+Destroyer/Physique Jewel 4:7
+KO/Physique Jewel 4:7
+Potential/Physique Jewel 4:7
+Wind Resist/Physique Jewel 4:7
+Draw/Physique Jewel 4:7
+Throttle/Physique Jewel 4:7
+Challenger/Physique Jewel 4:7
+Flawless/Physique Jewel 4:7
+Furor/Physique Jewel 4:7
+Mighty/Physique Jewel 4:7
+Brace/Physique Jewel 4:7
+Phoenix/Physique Jewel 4:7
+Earplug/Physique Jewel 4:7
+Critical/Physique Jewel 4:7
+Tenderizer/Physique Jewel 4:7
+Handicraft/Physique Jewel 4:7
+Release/Physique Jewel 4:7
+Footing/Evasion Jewel 4:7
+Charger/Evasion Jewel 4:7
+Enhancer/Evasion Jewel 4:7
+Destroyer/Evasion Jewel 4:7
+KO/Evasion Jewel 4:7
+Potential/Evasion Jewel 4:7
+Wind Resist/Evasion Jewel 4:7
+Draw/Evasion Jewel 4:5
+Throttle/Evasion Jewel 4:7
+Challenger/Evasion Jewel 4:7
+Flawless/Evasion Jewel 4:7
+Furor/Evasion Jewel 4:7
+Mighty/Evasion Jewel 4:7
+Brace/Evasion Jewel 4:7
+Phoenix/Evasion Jewel 4:7
+Earplug/Evasion Jewel 4:7
+Critical/Evasion Jewel 4:5
+Tenderizer/Evasion Jewel 4:7
+Handicraft/Evasion Jewel 4:7
+Release/Evasion Jewel 4:7
