@@ -5,17 +5,19 @@ from PIL import ImageFilter
 from PIL import ImageGrab
 from tkinter import *
 from tkinter.ttk import *
-import pyautogui
-import time
-import pathlib
-import PIL.ImageOps
+from os import remove
+from pyautogui import moveTo, scroll
+from time import sleep
+from mss import mss
+from mss.tools import to_png
+from numpy import array
+from pathlib import Path
+from PIL.ImageOps import invert
+
+import PIL
 import cv2
 import pytesseract
-import numpy
-import os
-import mss
-import mss.tools
-pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'Tesseract-OCR\\tesseract'
 
 sizex = 0
 sizey = 0
@@ -23,20 +25,20 @@ size = 0
 
 root = Tk()
 
+
 def capture():
     global x1, y1, drawing, num, img, img2, x2, y2
 
-
-    x1,y1,x2,y2=0,0,0,0
+    x1, y1, x2, y2 = 0, 0, 0, 0
     drawing = False
 
     mon_num = int(mon_make.get())
 
-    with mss.mss() as sct:
+    with mss() as sct:
         monitors = sct.monitors
         monitor = sct.monitors[mon_num]
         im = sct.grab(monitor)
-        mss.tools.to_png(im.rgb, im.size, output="monitor-1.png")
+        to_png(im.rgb, im.size, output="monitor-1.png")
 
     def draw_rect(event, x, y, flags, param):
         global x1, y1, drawing, num, img, img2, x2, y2
@@ -50,7 +52,7 @@ def capture():
                 a, b = x, y
                 if a != x & b != y:
                     img = img2.copy()
-                    cv2.rectangle(img, (x1,y1),(x,y), (0, 255, 0), 2)
+                    cv2.rectangle(img, (x1, y1), (x, y), (0, 255, 0), 2)
 
         elif event == cv2.EVENT_LBUTTONUP:
             drawing = False
@@ -59,10 +61,9 @@ def capture():
             x2 = x
             y2 = y
 
-
-    key=ord('a')
-    img=cv2.imread('monitor-1.png') # reading image
-    img2=img.copy()
+    key = ord('a')
+    img = cv2.imread('monitor-1.png')  # reading image
+    img2 = img.copy()
     cv2.namedWindow("main", cv2.WINDOW_NORMAL)
 
     movex = 0
@@ -73,24 +74,26 @@ def capture():
 
     cv2.moveWindow("main", movex, 0)
     cv2.setMouseCallback("main", draw_rect)
-    cv2.setWindowProperty("main", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    cv2.setWindowProperty("main", cv2.WND_PROP_FULLSCREEN,
+                          cv2.WINDOW_FULLSCREEN)
     num = 0
 
     # PRESS w to confirm save selected bounded box
-    while key!=ord('w'):
-        cv2.imshow("main",img)
-        key = cv2.waitKey(1)&0xFF
+    while key != ord('w'):
+        cv2.imshow("main", img)
+        key = cv2.waitKey(1) & 0xFF
 
     #x1 += movex
     #x2 += movex
 
-    error_txt.insert(END,'Region captured at: {0} {1} {2} {3}\n'.format(x1,y1,x2,y2))
+    error_txt.insert(
+        END, 'Region captured at: {0} {1} {2} {3}\n'.format(x1, y1, x2, y2))
 
-    if key==ord('w'):
-        #cv2.imwrite('snap.png',img2[y1:y2,x1:x2])
+    if key == ord('w'):
+        # cv2.imwrite('snap.png',img2[y1:y2,x1:x2])
         cv2.destroyAllWindows()
         #print('Saved as snap.png')
-        os.remove('monitor-1.png')
+        remove('monitor-1.png')
 
 
 def hhcombine():
@@ -125,15 +128,12 @@ def hhcombine():
             else:
                 zeros[export_names.index(val)] = decos_nums[idx]
 
-
     with open('hhexport.txt', 'w') as f:
         for index, item in enumerate(zeros):
             if index != len(zeros)-1:
                 f.write("%s," % item)
             else:
                 f.write("%s" % item)
-
-    error_txt.insert(END,"Done, your decos are in hhexport.txt.\n")
 
 
 def combine():
@@ -145,7 +145,6 @@ def combine():
     decos_names = []
     decos_nums = []
     combine = []
-
 
     for i in export:
         x = i.split(':')
@@ -173,12 +172,16 @@ def combine():
                 f.write("%s" % item)
         f.write('}')
 
-    error_txt.insert(END,"Done, your decos are in dbexport.txt\n")
+    hhcombine()
+
+    error_txt.insert(
+        END, "Done, your decos are in dbexport.txt and hhexport.txt\n")
+    root.update()
 
 
 def takescreens():
     try:
-        print(x1,x2,y1,y2)
+        print(x1, x2, y1, y2)
     except NameError:
         error_txt.insert(END, "Capture region first\n")
         return
@@ -188,8 +191,18 @@ def takescreens():
     if size == 0:
         error_txt.insert(END, "Insert number of decos.\n")
         return
-    
-    time.sleep(5)
+
+    error_txt.insert(
+        END, "Screenshots will begin in 10 seconds, switch to MHW and click on the game.\n")
+    root.update()
+
+    for i in range(10, 0, -1):
+        error_txt.insert(END, str(i)+'...')
+        root.update()
+        sleep(1)
+
+    error_txt.insert(END, '\n')
+    root.update()
 
     w = abs(x2-x1)
     h = abs(y2-y1)
@@ -197,49 +210,50 @@ def takescreens():
     number = size
 
     def mouseloop(decos):
-        pathlib.Path('decos').mkdir(parents=True, exist_ok=True) 
+        Path('decos').mkdir(parents=True, exist_ok=True)
         counter = 0
         while(True):
             for row in range(5):
                 for column in range(10):
-                    pyautogui.moveTo(x1+(int(w*0.0603+(column*w*0.0961))), y1+(int(h*0.2372+(row*h*0.0961))))
+                    moveTo(x1+(int(w*0.0603+(column*w*0.0961))),
+                           y1+(int(h*0.2372+(row*h*0.0955))))
                     #pyautogui.hotkey('alt', 'printscreen')
                     #img = ImageGrab.grabclipboard()
-                    img=ImageGrab.grab(bbox=(x1,y1,x2,y2))
-                    img.save('decos/deco'+str(counter)+'.png','PNG')
+                    img = ImageGrab.grab(bbox=(x1, y1, x2, y2))
+                    img.save('decos/deco'+str(counter)+'.png', 'PNG')
                     counter += 1
-                    progress['value']=counter/size*100
-                    prog_lbl['text']=str(counter)+'/'+str(size)
+                    progress['value'] = counter/size*100
+                    prog_lbl['text'] = str(counter)+'/'+str(size)
                     root.update()
                     if counter >= decos:
                         return
-            pyautogui.scroll(-1)
-            time.sleep(1)
+            scroll(-1)
+            sleep(1)
 
     mouseloop(number)
 
-    error_txt.insert(END,"Done taking screenshots\n")
+    error_txt.insert(END, "Done taking screenshots\n")
 
 
 def convert_img(imagename):
     image = PIL.Image.open('decos/'+imagename+'.png')
-    inverted_image = PIL.ImageOps.invert(image)
+    inverted_image = invert(image)
     thresh = 200
-    fn = lambda x : 255 if x > thresh else 0
+    def fn(x): return 255 if x > thresh else 0
     inverted_convert = inverted_image.convert('L').point(fn, mode='1')
     inverted_convert = inverted_convert.filter(ImageFilter.EDGE_ENHANCE_MORE)
-    #inverted_convert.save('images/'+imagename+'-inv.png')
-    
-    pil_image = inverted_convert.convert('RGB') 
-    open_cv_image = numpy.array(pil_image)
-    
+    # inverted_convert.save('images/'+imagename+'-inv.png')
+
+    pil_image = inverted_convert.convert('RGB')
+    open_cv_image = array(pil_image)
+
     open_cv_image = open_cv_image[:, :, ::-1].copy()
-    
+
     return(open_cv_image)
 
 
 def get_text(image, psm):
-    text = pytesseract.image_to_string(image, config = psm)
+    text = pytesseract.image_to_string(image, config=psm)
     text_list = text.splitlines()
     text_list = list(filter(None, text_list))
     return(text_list)
@@ -254,17 +268,17 @@ def slice_image(img):
     lgap = int(width*.0651)
     l = int(width*.8794)
 
-    title = img[hgap:hgap+h,lgap:lgap+l]
-    #cv2.imwrite('images/title-sliced.png',title)
-    
+    title = img[hgap:hgap+h, lgap:lgap+l]
+    # cv2.imwrite('images/title-sliced.png',title)
+
     hgap = int(height*.9302)
     h = int(height*.0512)
     lgap = int(width*.6726)
     l = int(width*.1417)
-    amount = img[hgap:hgap+h,lgap:lgap+l]
+    amount = img[hgap:hgap+h, lgap:lgap+l]
 
-    #cv2.imwrite('images/amount-sliced.png',amount)
-    return(title,amount)
+    # cv2.imwrite('images/amount-sliced.png',amount)
+    return(title, amount)
 
 
 def alldecos():
@@ -274,31 +288,49 @@ def alldecos():
     if size == 0:
         error_txt.insert(END, "Insert number of decos.\n")
         return
-    
+
     x = sizex
     y = sizey
 
     counter = 0
     decos = size
+    export_names = []
+    export_nums = []
     output = []
     errors = []
+
+    export = [line.rstrip('\n') for line in open('dbdata.txt')]
+
+    for i in export:
+        x = i.split(':')
+        export_names.append(x[0])
+        export_nums.append(x[1])
 
     for i in range(decos):
         counter += 1
 
-        progress['value']=counter/size*100
-        prog_lbl['text']=str(counter)+'/'+str(size)
+        progress['value'] = counter/size*100
+        prog_lbl['text'] = str(counter)+'/'+str(size)
         root.update()
 
         image = convert_img('deco'+str(i))
 
         title, amount = slice_image(image)
         name = get_text(title, '--psm 3')
-        number = get_text(amount,'--psm 10')
-        
+        number = get_text(amount, '--psm 10')
+
+        if str(name[0][:4]) == 'lron' or str(name[0][:4]) == '1ron':
+            name[0] = name[0].replace('lron', 'Iron')
+
         if not name or not number:
-            output.append('"ERROR":#')
+            output.append('"ERROR-ERROR-ERROR":#')
             errors.append(i)
+
+        elif '"'+str(name[0])+'"' not in export_names:
+            output.append('##ERROR##-FIX-TEXT-->"' +
+                          str(name[0])+'":'+str(number[0]))
+            errors.append(i)
+
         elif number[0].isnumeric():
             output.append('"'+str(name[0])+'":'+str(number[0]))
         else:
@@ -306,22 +338,37 @@ def alldecos():
 
     with open('decos.txt', 'w') as f:
         for item in output:
-            if item[:5] == '"lron':
-                item = item.replace('"lron', '"Iron')
             f.write("%s\n" % item)
 
     if errors:
-        error_txt.insert(END,"!!!Fix the errors in decos.txt by looking at file(s) below BEFORE moving on!!!\n")
+        error_txt.insert(
+            END, "!!!Fix the errors in decos.txt by looking at file(s) below BEFORE moving on!!!\n")
 
         for index, item in enumerate(errors):
             if index != len(errors)-1:
-                error_txt.insert(END,'deco'+str(item)+'.png, ')
+                error_txt.insert(END, 'deco'+str(item)+'.png, ')
             else:
-                error_txt.insert(END,'deco'+str(item)+'.png')
+                error_txt.insert(END, 'deco'+str(item)+'.png')
 
-        error_txt.insert(END,"\n")
-    
-    error_txt.insert(END,"Done converting to text. Output in decos.txt.\n")
+        error_txt.insert(END, "\n")
+
+    error_txt.insert(END, "Done converting to text. Output in decos.txt.\n")
+
+
+def defaultregion():
+    global x1, y1, x2, y2
+
+    mon_num = int(mon_make.get())
+    with mss() as sct:
+        monitors = sct.monitors
+        monitor = sct.monitors[mon_num]
+
+    w = monitor['width']
+    h = monitor['height']
+
+    x1, y1, x2, y2 = w*0.0724, h*.1426, w*0.3932, h*0.7417
+
+    error_txt.insert(END, "Region set to 16:9 defaults.\n")
 
 
 def setamnt():
@@ -347,40 +394,42 @@ mon_make = StringVar(root)
 mon_choose = OptionMenu(root, mon_make, options[0], *options)
 mon_make.set(options[0])
 
-region_btn = Button(root, text="(1) Capture Region", command=capture)
+region_btn = Button(
+    root, text="(1.1) Capture Region ['w' to confirm]", command=capture)
+default_btn = Button(root, text="(1) Default 16:9 Region",
+                     command=defaultregion)
 
-scrn_btn = Button(root, text="(2) Start Screenshots", command=takescreens)
+scrn_btn = Button(
+    root, text="(2) Start Screenshots [10s delay, be on first deco page]", command=takescreens)
 convert_btn = Button(root, text="(3) Start Converting", command=alldecos)
-export_btn = Button(root, text="(E) mhw.wiki-db Export", command=combine)
-exporthh_btn = Button(root, text="(E) honeyhunterworld Export", command=hhcombine)
+exporthh_btn = Button(
+    root, text="(4) Export [if any errors below, fix first]", command=combine)
 
-mon_lbl = Label(root, text="Select Monitor:")
+mon_lbl = Label(root, text="Select Monitor MHW is on (default 1):")
 prog_lbl = Label(root, text="0/X")
 error_lbl = Label(root, text="Output:")
-error_txt = Text(root, height=4)
+error_txt = Text(root, height=7)
 
-progress = Progressbar(root, orient = HORIZONTAL, mode = 'determinate')
+progress = Progressbar(root, orient=HORIZONTAL, mode='determinate')
 
+size_lbl.grid(row=0, column=0, sticky="nse", padx=2, pady=2)
+size_ent.grid(row=0, column=1, columnspan=2, sticky="nsew", padx=2, pady=2)
 
-size_lbl.grid(row=0, column=0, sticky="nse", padx = 2, pady = 2)
-size_ent.grid(row=0, column=1, columnspan=2, sticky="nsew", padx = 2, pady = 2)
+mon_lbl.grid(row=1, column=0, sticky="nse", padx=2, pady=2)
+mon_choose.grid(row=1, column=1, sticky="nsew", padx=2, pady=2)
 
-mon_lbl.grid(row=1, column=0, sticky="nse", padx = 2, pady = 2)
-mon_choose.grid(row=1, column=1, sticky="nsew", padx = 2, pady = 2)
+default_btn.grid(row=2, column=0, sticky="nsew", padx=2, pady=2)
+region_btn.grid(row=2, column=1, sticky="nsew", padx=2, pady=2)
+scrn_btn.grid(row=2, column=2, sticky="nsew", padx=2, pady=2)
 
-region_btn.grid(row=2, column=0, sticky="nsew", padx = 2, pady = 2)
-scrn_btn.grid(row=2, column=1, sticky="nsew", padx = 2, pady = 2)
-convert_btn.grid(row=2, column=2, sticky="nsew", padx = 2, pady = 2)
+convert_btn.grid(row=3, column=0, sticky="nsew", padx=2, pady=2)
+exporthh_btn.grid(row=3, column=1, sticky="nsew", padx=2, pady=2)
 
-export_btn.grid(row=3, column=0, sticky="nsew", padx = 2, pady = 2)
-exporthh_btn.grid(row=3, column=1, sticky="nsew", padx = 2, pady = 2)
+progress.grid(row=4, columnspan=2, sticky="nsew", padx=2, pady=2)
+prog_lbl.grid(row=4, column=2, sticky="nsew", padx=2, pady=2)
 
+error_lbl.grid(row=5, column=0, sticky="nsew", padx=2, pady=2)
+error_txt.grid(row=6, columnspan=3, padx=2, pady=2, sticky="nsew")
 
-progress.grid(row=4, columnspan=2, sticky="nsew", padx = 2, pady = 2)
-prog_lbl.grid(row=4, column=2, sticky="nsew", padx = 2, pady = 2)
-
-
-error_lbl.grid(row=5, column=0, sticky="nsew", padx = 2, pady = 2)
-error_txt.grid(row=6, columnspan=3, padx = 2, pady = 2)
 
 root.mainloop()
