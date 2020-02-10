@@ -19,12 +19,9 @@ import cv2
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r'Tesseract-OCR\\tesseract'
 
-sizex = 0
-sizey = 0
-size = 0
+aod = 0
 
 root = Tk()
-
 
 def capture():
     global x1, y1, drawing, num, img, img2, x2, y2
@@ -32,7 +29,7 @@ def capture():
     x1, y1, x2, y2 = 0, 0, 0, 0
     drawing = False
 
-    mon_num = int(mon_make.get())
+    mon_num = int(monitor_dd.get())
 
     with mss() as sct:
         monitors = sct.monitors
@@ -58,8 +55,7 @@ def capture():
             drawing = False
             num += 1
             font = cv2.FONT_HERSHEY_SIMPLEX
-            x2 = x
-            y2 = y
+            x2, y2 = x, y
 
     key = ord('a')
     img = cv2.imread('monitor-1.png')  # reading image
@@ -83,9 +79,6 @@ def capture():
         cv2.imshow("main", img)
         key = cv2.waitKey(1) & 0xFF
 
-    #x1 += movex
-    #x2 += movex
-
     error_txt.insert(
         END, 'Region captured at: {0} {1} {2} {3}\n'.format(x1, y1, x2, y2))
 
@@ -105,7 +98,6 @@ def hhcombine():
     export_nums = []
     decos_names = []
     decos_nums = []
-    combine = []
 
     for i in export:
         x = i.split(':')
@@ -174,29 +166,27 @@ def combine():
 
     hhcombine()
 
-    error_txt.insert(
-        END, "Done, your decos are in dbexport.txt and hhexport.txt\n")
+    error_txt.insert(END, "Done, your decos are in dbexport.txt and hhexport.txt\n")
     root.update()
 
 
 def takescreens():
     try:
-        print(x1, x2, y1, y2)
+        x1, x2, y1, y2
     except NameError:
-        error_txt.insert(END, "Capture region first\n")
+        error_txt.insert(END, "Capture region first.\n")
         return
 
     setamnt()
 
-    if size == 0:
+    if aod == 0:
         error_txt.insert(END, "Insert number of decos.\n")
         return
 
-    error_txt.insert(
-        END, "Screenshots will begin in 10 seconds, switch to MHW and click on the game.\n")
+    error_txt.insert(END, "Screenshots will begin in 5 seconds, switch to MHW and click on the game.\n")
     root.update()
 
-    for i in range(10, 0, -1):
+    for i in range(5, 0, -1):
         error_txt.insert(END, str(i)+'...')
         root.update()
         sleep(1)
@@ -207,7 +197,7 @@ def takescreens():
     w = abs(x2-x1)
     h = abs(y2-y1)
 
-    number = size
+    number = aod
 
     def mouseloop(decos):
         Path('decos').mkdir(parents=True, exist_ok=True)
@@ -215,15 +205,12 @@ def takescreens():
         while(True):
             for row in range(5):
                 for column in range(10):
-                    moveTo(x1+(int(w*0.0603+(column*w*0.0961))),
-                           y1+(int(h*0.2372+(row*h*0.0955))))
-                    #pyautogui.hotkey('alt', 'printscreen')
-                    #img = ImageGrab.grabclipboard()
+                    moveTo(x1+(int(w*0.0603+(column*w*0.0961))), y1+(int(h*0.2372+(row*h*0.0955))))
                     img = ImageGrab.grab(bbox=(x1, y1, x2, y2))
                     img.save('decos/deco'+str(counter)+'.png', 'PNG')
                     counter += 1
-                    progress['value'] = counter/size*100
-                    prog_lbl['text'] = str(counter)+'/'+str(size)
+                    progress['value'] = counter/aod*100
+                    prog_lbl['text'] = str(counter)+'/'+str(aod)
                     root.update()
                     if counter >= decos:
                         return
@@ -237,16 +224,16 @@ def takescreens():
 
 def convert_img(imagename):
     image = PIL.Image.open('decos/'+imagename+'.png')
-    inverted_image = invert(image)
+    image = invert(image)
+
     thresh = 200
     def fn(x): return 255 if x > thresh else 0
-    inverted_convert = inverted_image.convert('L').point(fn, mode='1')
-    inverted_convert = inverted_convert.filter(ImageFilter.EDGE_ENHANCE_MORE)
+    image = image.convert('L').point(fn, mode='1')
+    image = image.filter(ImageFilter.EDGE_ENHANCE_MORE)
     # inverted_convert.save('images/'+imagename+'-inv.png')
 
-    pil_image = inverted_convert.convert('RGB')
+    pil_image = image.convert('RGB')
     open_cv_image = array(pil_image)
-
     open_cv_image = open_cv_image[:, :, ::-1].copy()
 
     return(open_cv_image)
@@ -285,15 +272,11 @@ def alldecos():
 
     setamnt()
 
-    if size == 0:
+    if aod == 0:
         error_txt.insert(END, "Insert number of decos.\n")
         return
 
-    x = sizex
-    y = sizey
-
     counter = 0
-    decos = size
     export_names = []
     export_nums = []
     output = []
@@ -306,11 +289,11 @@ def alldecos():
         export_names.append(x[0])
         export_nums.append(x[1])
 
-    for i in range(decos):
-        counter += 1
+    for i in range(aod):
 
-        progress['value'] = counter/size*100
-        prog_lbl['text'] = str(counter)+'/'+str(size)
+        counter += 1
+        progress['value'] = counter/aod*100
+        prog_lbl['text'] = str(counter)+'/'+str(aod)
         root.update()
 
         image = convert_img('deco'+str(i))
@@ -325,12 +308,9 @@ def alldecos():
         if not name or not number:
             output.append('"ERROR-ERROR-ERROR":#')
             errors.append(i)
-
         elif '"'+str(name[0])+'"' not in export_names:
-            output.append('##ERROR##-FIX-TEXT-->"' +
-                          str(name[0])+'":'+str(number[0]))
+            output.append('##ERROR##--->"' +str(name[0])+'":'+str(number[0]))
             errors.append(i)
-
         elif number[0].isnumeric():
             output.append('"'+str(name[0])+'":'+str(number[0]))
         else:
@@ -358,7 +338,7 @@ def alldecos():
 def defaultregion():
     global x1, y1, x2, y2
 
-    mon_num = int(mon_make.get())
+    mon_num = int(monitor_dd.get())
     with mss() as sct:
         monitors = sct.monitors
         monitor = sct.monitors[mon_num]
@@ -372,42 +352,36 @@ def defaultregion():
 
 
 def setamnt():
-    global size
+    global aod
 
     if size_ent.index("end") == 0:
-        size = 0
+        aod = 0
         return
 
-    size = int(size_ent.get())
+    aod = int(size_ent.get())
 
 
 root.title("Deco-Exporter 9001")
 
 size_lbl = Label(root, text="Amount of Decos")
-
 size_ent = Entry(root)
-
 size_ent.insert(0, "123")
 
 options = [1, 2, 3, 4]
-mon_make = StringVar(root)
-mon_choose = OptionMenu(root, mon_make, options[0], *options)
-mon_make.set(options[0])
+monitor_dd = StringVar(root)
+monitor_choices = OptionMenu(root, monitor_dd, options[0], *options)
+monitor_dd.set(options[0])
 
-region_btn = Button(
-    root, text="(1.1) Capture Region ['w' to confirm]", command=capture)
-default_btn = Button(root, text="(1) Default 16:9 Region",
-                     command=defaultregion)
-
-scrn_btn = Button(
-    root, text="(2) Start Screenshots [10s delay, be on first deco page]", command=takescreens)
+default_btn = Button(root, text="(1) Default 16:9 Region", command=defaultregion)
+region_btn = Button(root, text="(1.1) Capture Region ['w' to confirm]", command=capture)
+scrn_btn = Button(root, text="(2) Start Screenshots [10s delay, be on first deco page]", command=takescreens)
 convert_btn = Button(root, text="(3) Start Converting", command=alldecos)
-exporthh_btn = Button(
-    root, text="(4) Export [if any errors below, fix first]", command=combine)
+exporthh_btn = Button(root, text="(4) Export [if any errors below, fix first]", command=combine)
 
 mon_lbl = Label(root, text="Select Monitor MHW is on (default 1):")
 prog_lbl = Label(root, text="0/X")
 error_lbl = Label(root, text="Output:")
+
 error_txt = Text(root, height=7)
 
 progress = Progressbar(root, orient=HORIZONTAL, mode='determinate')
@@ -416,7 +390,7 @@ size_lbl.grid(row=0, column=0, sticky="nse", padx=2, pady=2)
 size_ent.grid(row=0, column=1, columnspan=2, sticky="nsew", padx=2, pady=2)
 
 mon_lbl.grid(row=1, column=0, sticky="nse", padx=2, pady=2)
-mon_choose.grid(row=1, column=1, sticky="nsew", padx=2, pady=2)
+monitor_choices.grid(row=1, column=1, sticky="nsew", padx=2, pady=2)
 
 default_btn.grid(row=2, column=0, sticky="nsew", padx=2, pady=2)
 region_btn.grid(row=2, column=1, sticky="nsew", padx=2, pady=2)
