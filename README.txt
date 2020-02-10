@@ -1,5 +1,7 @@
 deco-exporter temp readme:
 
+If you are grabbing this fron github you'll be missing the Tesseract-OCR folder. Download and specify the deco-export.py directory as the location. Can be found here: https://github.com/UB-Mannheim/tesseract/wiki
+
 Before starting:
 
 	- Make sure game is on main monitor (fullscreen or full borderless)
