@@ -23,6 +23,8 @@ aod = 0
 
 root = Tk()
 
+
+#the region caprture method, isnt used if defaultregion() is used instead
 def capture():
     global x1, y1, drawing, num, img, img2, x2, y2
 
@@ -89,6 +91,8 @@ def capture():
         remove('monitor-1.png')
 
 
+
+#just formats the decos.txt file to match what is used on https://honeyhunterworld.com/mhwbi/
 def hhcombine():
     export = [line.rstrip('\n') for line in open('hhdata.txt')]
     decos = [line.rstrip('\n') for line in open('decos.txt')]
@@ -128,6 +132,8 @@ def hhcombine():
                 f.write("%s" % item)
 
 
+
+#just formats the decos.txt file to match what is used on https://mhw.wiki-db.com/sim/?hl=en
 def combine():
     export = [line.rstrip('\n') for line in open('dbdata.txt')]
     decos = [line.rstrip('\n') for line in open('decos.txt')]
@@ -170,6 +176,8 @@ def combine():
     root.update()
 
 
+
+#mouse automation for screenshots
 def takescreens():
     try:
         x1, x2, y1, y2
@@ -222,6 +230,8 @@ def takescreens():
     error_txt.insert(END, "Done taking screenshots\n")
 
 
+
+#converts the screenshot to inverted b&w open_cv for use in splitter/reader 
 def convert_img(imagename):
     image = PIL.Image.open('decos/'+imagename+'.png')
     image = invert(image)
@@ -239,6 +249,8 @@ def convert_img(imagename):
     return(open_cv_image)
 
 
+
+#uses image_to_string to get the text on the split images, psm value is changed for name vs amount
 def get_text(image, psm):
     text = pytesseract.image_to_string(image, config=psm)
     text_list = text.splitlines()
@@ -246,6 +258,8 @@ def get_text(image, psm):
     return(text_list)
 
 
+
+#slices the image to grab the name and amount of decorations
 def slice_image(img):
 
     height, width, channels = img.shape
@@ -268,6 +282,8 @@ def slice_image(img):
     return(title, amount)
 
 
+
+#the main logic behind prepairing images for ocr and then extracting the text. Also handles errors in the extracted text.
 def alldecos():
 
     setamnt()
@@ -335,6 +351,8 @@ def alldecos():
     error_txt.insert(END, "Done converting to text. Output in decos.txt.\n")
 
 
+
+#sets the region to the default for 16:9 monitors
 def defaultregion():
     global x1, y1, x2, y2
 
@@ -351,6 +369,8 @@ def defaultregion():
     error_txt.insert(END, "Region set to 16:9 defaults.\n")
 
 
+
+#sets the global variable to the amount of decorations the user wants to export
 def setamnt():
     global aod
 
