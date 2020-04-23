@@ -8,7 +8,7 @@ Before starting:
 In Game Preperation Steps:
 	
 	1. Save your current equipment to a loadout to go back to when done
-	2. Go to item box > set decorations > current equipment > select any slot > press remove all (default controller: start --- default keyboard:x)
+	2. Go to item box > set decorations > current equipment > select any slot > press remove all (default controller: start --- default keyboard: x)
 	3. Go to item box > sell items > decorations tab > autosort (default controller: right-stick --- default keyboard: tab)
 
 Using the tool (default 16:9):
