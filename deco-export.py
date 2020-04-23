@@ -18,7 +18,16 @@ import sys
 import PIL
 import cv2
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'Tesseract-OCR\\tesseract'
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+pytesseract.pytesseract.tesseract_cmd = resource_path(r"Tesseract-OCR\tesseract.exe")
 
 aod = 0
 monitor_number = 0
@@ -29,19 +38,19 @@ layout = [
      sg.Input(key="amountInput", tooltip="Tip: 50 per page")],
     [sg.Text("Select Monitor MHW is on (default 1)"),
      sg.Drop(values=(1, 2, 3, 4), key="dropdown")],
-    [sg.Button("Default 16:9 Region",
+    [sg.Button(" Default 16:9 Region ",
                tooltip="Use this if you have a 16:9 monitor",
                key="defaultButton"),
-     sg.Button("Select Custom Region",
+     sg.Button(" Select Custom Region ",
                tooltip="Use this if your monitor is not 16:9 or the default doesnt work, drag to make box, \"w\" to confirm ",
                key="customButton"),
-     sg.Button("Start Screenshots (5s delay to alt-tab)",
+     sg.Button(" Start Screenshots (5s delay to alt-tab) ",
                tooltip="You will have 5 seconds to alt-tab into MHW after you press this, make sure you're on your first deco page.",
                key="startButton")],
-    [sg.Button("Start Converting",
+    [sg.Button(" Start Converting ",
                tooltip="This will convert the images to text, it may take a minute depending on PC speed and number of decos",
                key="convertButton"),
-     sg.Button("Export (fix errors first!)",
+     sg.Button(" Export (fix errors first!) ",
                tooltip="FIX ANY ERRORS BEFORE PRESSING THIS OR IT WONT WORK!!!!!",
                key="exportButton")],
     [sg.Text("Progress:"),
@@ -127,8 +136,7 @@ def capture():
 
 # just formats the decos.txt file to match what is used on https://honeyhunterworld.com/mhwbi/
 def combine():
-    hhdatatxt = resource_path('hhdata.txt')
-    export = [line.rstrip('\n') for line in open(hhdatatxt)]
+    export = [line.rstrip('\n') for line in open(resource_path('hhdata.txt'))]
     decos = [line.rstrip('\n') for line in open('decos.txt')]
     zeros = [0] * len(export)
 
@@ -291,8 +299,7 @@ def alldecos():
     output = []
     errors = []
 
-    hhdatatxt = resource_path('hhdata.txt')
-    export = [line.rstrip('\n') for line in open(hhdatatxt)]
+    export = [line.rstrip('\n') for line in open(resource_path('hhdata.txt'))]
 
     for i in export:
         x = i.split(':')
@@ -375,15 +382,6 @@ def setamnt():
         return
 
     aod = int(values["amountInput"])
-
-
-def resource_path(relative_path):
-    try:
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-
-    return os.path.join(base_path, relative_path)
 
 
 while True:
